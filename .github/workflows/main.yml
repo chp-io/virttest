@@ -7,19 +7,17 @@ on:
     branches: [ main ]
 
 jobs:
-  macos12_test:
-    runs-on: macos-12
+  ubuntu_test:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Run System Check
-        run: ./system-checks.sh
-      - name: Install libvirt
-        run: brew install libvirt
-      - name: Start libvirtd
-        run: libvirtd
-      - name: virsh
-        run: virsh -v
+      - name: cat /proc/cpuinfo | grep vmx
+  # macos12_test:
+  #   runs-on: macos-12
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
+  #     - name: Run System Check
+  #       run: ./system-checks.sh
       # - name: Run Ubuntu VM in VBox
       #   run: ./build-vbox-ubuntu.sh
 #   macos11_test:
@@ -27,3 +25,10 @@ jobs:
 #     steps:
 #      - run: ls -la
 #      - run: ./check-vmx.sh
+
+      # - name: Install libvirt
+      #   run: brew install libvirt
+      # - name: Start libvirtd
+      #   run: libvirtd
+      # - name: virsh
+      #   run: virsh -v
