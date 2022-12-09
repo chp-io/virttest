@@ -15,7 +15,11 @@ jobs:
       - name: Run System Check
         run: ./system-checks.sh
       - name: Install libvirt
-        run: brew libvirt
+        run: brew install libvirt
+      - name: Start libvirtd
+        run: libvirtd
+      - name: virsh
+        run: virsh -v
       # - name: Run Ubuntu VM in VBox
       #   run: ./build-vbox-ubuntu.sh
 #   macos11_test:
