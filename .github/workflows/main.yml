@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: check vmx 
         run: ls -la /proc/cpuinfo
+      - run: cat /proc/cpuinfo
   # macos12_test:
   #   runs-on: macos-12
   #   steps:
