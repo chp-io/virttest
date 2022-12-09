@@ -14,8 +14,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Run System Check
         run: ./system-checks.sh
-      - name: Run Ubuntu VM in VBox
-        run: ./build-vbox-ubuntu.sh
+      - name: Install libvirt
+        run: brew libvirt
+      # - name: Run Ubuntu VM in VBox
+      #   run: ./build-vbox-ubuntu.sh
 #   macos11_test:
 #     runs-on: macos-11
 #     steps:
