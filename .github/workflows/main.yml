@@ -10,8 +10,10 @@ jobs:
   macos12_test:
     runs-on: macos-12
     steps:
+      - run: ls -la
       - run: ./check-vmx.sh
   macos11_test:
     runs-on: macos-11
     steps:
+     - run: ls -la
      - run: ./check-vmx.sh
