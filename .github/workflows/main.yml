@@ -10,7 +10,8 @@ jobs:
   ubuntu_test:
     runs-on: ubuntu-20.04
     steps:
-      - name: cat /proc/cpuinfo | grep vmx
+      - name: check vmx 
+        run: cat /proc/cpuinfo | grep vmx
   # macos12_test:
   #   runs-on: macos-12
   #   steps:
