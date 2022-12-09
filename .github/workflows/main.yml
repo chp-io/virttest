@@ -12,10 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Check directory
-        run: ls -la
-      - name: Check vmx cap
-        run: ./check-vmx.sh
+      - name: Run System Check
+        run: ./system-checks.sh
 #   macos11_test:
 #     runs-on: macos-11
 #     steps:
