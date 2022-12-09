@@ -1,0 +1,13 @@
+name: macos test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  macos_test:
+    runs-on: macos-latest
+    steps:
+      - run: echo "Hello, World!"
