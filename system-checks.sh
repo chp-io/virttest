@@ -12,7 +12,7 @@ if ! vagrant -v; then
   exit 1
 fi
 
-if ! VBoxMange -v; then
+if ! VBoxManage -v; then
   echo "Vagrant is not here! Exiting..."
   exit 1
 fi
