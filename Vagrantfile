@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
       ivhost.vm.synced_folder ".", "/vagrant"
       ivhost.vm.provision "ansible" do |ansible|
         ansible.playbook = "./playbooks/ivhost.yml"
+      end
     end
     config.vm.network "public_network"
   end
