@@ -13,6 +13,11 @@ if ! vagrant -v; then
 fi
 
 if ! VBoxManage -v; then
-  echo "Vagrant is not here! Exiting..."
+  echo "VBoxManage is not here! Exiting..."
+  exit 1
+fi
+
+if ! ansible --version; then
+  echo "Ansible is not here! Exiting..."
   exit 1
 fi

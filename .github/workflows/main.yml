@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Install Ansible via python
+        run: python3 -m pip install --user ansible
       - name: Run System Check
         run: ./system-checks.sh
       - name: Run Ubuntu VM in VBox
