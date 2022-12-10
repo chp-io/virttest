@@ -8,6 +8,6 @@ Vagrant.configure("2") do |config|
     #   ubuntu2004_config.vm.provision :shell, path: "./scripts/guest/bootstrap_ubuntu.sh"
     #   ubuntu2004_config.vm.provision :reload
       end
-      config.vm.network "public_network"
     end
+    config.vm.network "public_network"
   end
