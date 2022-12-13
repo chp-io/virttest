@@ -1,4 +1,4 @@
 ---
-- host: default
+- hosts: all
   roles:
     - role: system_check

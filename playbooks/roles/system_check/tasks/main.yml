@@ -1,2 +1,8 @@
+---
 - name: Get the System Kernel
-  ansible.builtin.shell: uname -r
+  shell:
+    uname -r
+  register: result
+- name: Print System Kernel
+  debug:
+    var: result
