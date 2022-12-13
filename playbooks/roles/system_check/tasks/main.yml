@@ -6,3 +6,19 @@
 - name: Print System Kernel
   debug:
     var: result
+- name: Get HWE support status
+  shell:
+    hwe-support-status
+  register: result
+- name: Print HWE Support Status
+  debug:
+    var: result
+- name: Install introvirt ppa
+  ansible.builtin.apt_repository:
+    repo: ppa:srpape/introvirt
+    update_cache: true # apt-get update
+- name: Install kvm introvirt
+  ansible.builtin.apt_repository:
+    name: kvm-introvirt
+    state: present
+
