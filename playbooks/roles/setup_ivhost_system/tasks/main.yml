@@ -30,12 +30,9 @@
       - libmspdb-dev
     state: present
   become: true
-- name: Install kvm introvirt
+- name: Install kvm introvirt deb
   ansible.builtin.apt:
-    name:
-      - kvm-introvirt
-      - kvm-introvirt-5.11.0-37-generic
-    state: present
+    deb: ./kvm-introvirt*.deb
   become: true
 - name: Install introvirt
   ansible.builtin.apt:
