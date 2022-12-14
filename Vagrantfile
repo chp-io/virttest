@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |vbox|
       vbox.gui = false
       # https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html
-      vbox.customize ["modifyvm", :id, "--hwvirtex", "on"]
+      vbox.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
     end
 
     config.vm.network "public_network"
