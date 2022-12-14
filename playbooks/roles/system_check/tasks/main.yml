@@ -17,8 +17,9 @@
   ansible.builtin.apt_repository:
     repo: ppa:srpape/introvirt
     update_cache: true # apt-get update
+  become: true
 - name: Install kvm introvirt
   ansible.builtin.apt_repository:
     name: kvm-introvirt
     state: present
-
+  become: true
