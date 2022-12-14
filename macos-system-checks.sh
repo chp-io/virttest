@@ -10,6 +10,9 @@ sysctl -n hw.cputype
 echo "RAM  Size:"
 sysctl -n hw.memsize | awk '{ foo = $1 / 1024 / 1024 / 1024 ; print foo "GB"}'
 
+echo "Working Directory:"
+pwd
+
 echo "Disk Size:"
 df -h
 

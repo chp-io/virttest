@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "public_network"
 
     # Ubuntu 20.04 (Focal) guest VM
-    config.vm.define :ubuntu2004 do |ivhost|
+    config.vm.define "ivhost_ubuntu2004" do |ivhost|
       ivhost.vm.box = "generic/ubuntu2004"
   
       ivhost.vm.synced_folder ".", "/vagrant"

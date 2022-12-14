@@ -31,14 +31,22 @@
     state: present
     update_cache: true
   become: true
+- name: check github.com
+  shell:
+    dig github.com && \
+    wget https://github.com && \
+    wget https://github.com/LethalServant/kvm-introvirt
 - name: Git checkout
   ansible.builtin.git:
-    repo: 'https://github.com/LethalServant/kvm-introvirt.git'
+    repo: https://github.com/LethalServant/kvm-introvirt.git
     dest: /vagrant/kvm-introvirt
     version: ubuntu/focal/Ubuntu-5.4.0-132.148
   become: true
+- name: Configure kvm introvirt
+  shell:
+    cd /vagrant/kvm-introvirt && \
+    ./configure
 - name: Build kvm introvirt
   shell:
     cd /vagrant/kvm-introvirt && \
-    ./configure && \
     dpkg-buildpackage -us -uc -j
