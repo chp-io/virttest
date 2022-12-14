@@ -1,0 +1,44 @@
+---
+- name: Get the System Kernel
+  shell:
+    cat /proc/version_signature 
+  register: result
+- name: Print System Kernel
+  debug:
+    var: result
+- name: apt-get update
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+- name: Get kernel version
+  shell:
+    uname -r
+  register: kernel_version
+- name: Setup kvm introvirt build env
+  ansible.builtin.apt:
+    name:
+      - bc
+      - devscripts
+      - quilt
+      - git
+      - flex
+      - bison
+      - libssl-dev
+      - libelf-dev
+      - debhelper
+      - "linux-headers-{{ kernel_version.stdout }}"
+      - "linux-modules-{{ kernel_version.stdout }}"
+    state: present
+    update_cache: true
+  become: true
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'https://github.com/LethalServant/kvm-introvirt.git'
+    dest: /vagrant/kvm-introvirt
+    version: ubuntu/focal/Ubuntu-5.4.0-132.148
+  become: true
+- name: Build kvm introvirt
+  shell:
+    cd /vagrant/kvm-introvirt && \
+    ./configure && \
+    dpkg-buildpackage -us -uc -j

@@ -1,13 +1,17 @@
 #!/bin/bash
 
+# https://ss64.com/osx/sysctl.html 
 echo "CPU Count:"
-hwprefs cpu_count
+sysctl -n hw.ncpu
+
+echo "CPU Type:"
+sysctl -n hw.cputype
 
 echo "RAM  Size:"
-hwprefs memory_size
+sysctl -n hw.memsize | awk '{ foo = $1 / 1024 / 1024 / 1024 ; print foo "GB"}'
 
-echo "CPU Flags:"
-if ! sysctl -a | grep 'machdep.cpu.features' | grep 'VMX'; then
+echo "CPU Features:"
+if ! sysctl -n machdep.cpu.features | grep 'VMX'; then
   echo "VMX feature for cpu is not found! Exiting..."
   exit 1
 fi

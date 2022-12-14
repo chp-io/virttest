@@ -7,19 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
-  macos12_test:
+  build_kvm_introvirt:
     runs-on: macos-12
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Install Ansible via python
         run: python3 -m pip install ansible
-      - name: Run System Check
-        run: ./system-checks.sh
-      - name: Run Ubuntu VM in VBox
-        run: ./build-vbox-ubuntu.sh
-#   macos11_test:
-#     runs-on: macos-11
-#     steps:
-#      - run: ls -la
-#      - run: ./check-vmx.sh
+      - name: Run MacOS System Checks
+        run: ./macos-system-checks.sh
+      - name: Build kvm-introvirt for specific kernel
+        run: ./build-vbox-kvm-introvirt-builder.sh
+  test_iv:
+    runs-on: macos-12
+    needs: build_kvm_introvirt
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install Ansible via python
+        run: python3 -m pip install ansible
+      - name: Run MacOS System Checks
+        run: ./macos-system-checks.sh
+      - name: Build ivhost to test introvirt
+        run: ./build-vbox-ivhost.sh
