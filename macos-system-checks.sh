@@ -10,6 +10,9 @@ sysctl -n hw.cputype
 echo "RAM  Size:"
 sysctl -n hw.memsize | awk '{ foo = $1 / 1024 / 1024 / 1024 ; print foo "GB"}'
 
+echo "Disk Size:"
+df -h
+
 echo "CPU Features:"
 if ! sysctl -n machdep.cpu.features | grep 'VMX'; then
   echo "VMX feature for cpu is not found! Exiting..."
