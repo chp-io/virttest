@@ -18,6 +18,12 @@ jobs:
         run: ./macos-system-checks.sh
       - name: Build kvm-introvirt for specific kernel
         run: ./build-vbox-kvm-introvirt-builder.sh
+      - name: check dir sturct
+        run: | 
+          ls -la
+      - name: check current dir size
+        run: | 
+          du -sh
       - name: Archive kvm introvirt deb packages
         uses: actions/upload-artifact@v3
         with:
