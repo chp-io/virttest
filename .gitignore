@@ -1,3 +1,5 @@
 .vagrant
 /vagrant/kvm_introvirt_builder/kvm-introvirt
 /vagrant/kvm_introvirt_builder/kvm-introvirt*
+*.box
+*.log
