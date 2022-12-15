@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd ./vagrant/kvm_introvirt_builder
+cd ./vagrant/ivkvm_builder
 vagrant up
 vagrant status

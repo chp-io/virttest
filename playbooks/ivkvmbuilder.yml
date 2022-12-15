@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+    - role: ivkvm_builder

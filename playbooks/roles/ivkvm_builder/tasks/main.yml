@@ -35,7 +35,7 @@
   ansible.builtin.git:
     repo: https://github.com/LethalServant/kvm-introvirt.git
     dest: /vagrant/kvm-introvirt
-    version: ubuntu/focal/Ubuntu-5.4.0-132.148
+    version: ubuntu/focal/Ubuntu-5.4.0-135.152
   become: true
 - name: Configure kvm introvirt
   shell:

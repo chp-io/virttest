@@ -9,13 +9,13 @@ Vagrant.configure("2") do |config|
     config.vm.network "public_network"
 
     # Ubuntu 20.04 (Focal) guest VM
-    config.vm.define "kvmiv_ubuntu2004" do |kvmiv|
-      kvmiv.vm.box = "generic/ubuntu2004"
+    config.vm.define "ivkvm_builder_ubuntu2004" do |ivkvm_builder|
+      ivkvm_builder.vm.box = "ubuntu/focal64"
+      ivkvm_builder.vm.box_version = "20221213.0.0" # Ubuntu 5.4.0-135.152-generic 5.4.212
   
-      kvmiv.vm.synced_folder ".", "/vagrant"
-      kvmiv.vm.provision "ansible" do |ansible|
-        ansible.playbook = "../../playbooks/kvm-introvirt.yml"
-        ansible.verbose = "vvv"
+      ivkvm_builder.vm.provision "ansible" do |ansible|
+        ansible.playbook = "../../playbooks/ivkvmbuilder.yml"
+        # ansible.verbose = "vvv"
       end
     end
   end

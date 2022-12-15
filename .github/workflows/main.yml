@@ -17,7 +17,7 @@ jobs:
   #     - name: Run MacOS System Checks
   #       run: ./macos-system-checks.sh
   #     - name: Build kvm-introvirt for specific kernel
-  #       run: ./build-vbox-kvm-introvirt-builder.sh
+  #       run: ./build-vbox-ivkvm-builder.sh
   #     - name: Archive kvm introvirt deb packages
   #       uses: actions/upload-artifact@v3
   #       with:
