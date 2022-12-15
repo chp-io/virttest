@@ -31,11 +31,6 @@
     state: present
     update_cache: true
   become: true
-- name: check github.com
-  shell:
-    dig github.com && \
-    wget https://github.com && \
-    wget https://github.com/LethalServant/kvm-introvirt
 - name: Git checkout
   ansible.builtin.git:
     repo: https://github.com/LethalServant/kvm-introvirt.git

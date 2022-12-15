@@ -7,25 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
-  build_kvm_introvirt:
-    runs-on: macos-12
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Install Ansible via python
-        run: python3 -m pip install ansible
-      - name: Run MacOS System Checks
-        run: ./macos-system-checks.sh
-      - name: Build kvm-introvirt for specific kernel
-        run: ./build-vbox-kvm-introvirt-builder.sh
-      - name: Archive kvm introvirt deb packages
-        uses: actions/upload-artifact@v3
-        with:
-          name: kvm-introvirt
-          path: vagrant/kvm_introvirt_builder/kvm-introvirt*.deb
+  # build_kvm_introvirt:
+  #   runs-on: macos-12
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
+  #     - name: Install Ansible via python
+  #       run: python3 -m pip install ansible
+  #     - name: Run MacOS System Checks
+  #       run: ./macos-system-checks.sh
+  #     - name: Build kvm-introvirt for specific kernel
+  #       run: ./build-vbox-kvm-introvirt-builder.sh
+  #     - name: Archive kvm introvirt deb packages
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: kvm-introvirt
+  #         path: vagrant/kvm_introvirt_builder/kvm-introvirt*.deb
   test_iv:
     runs-on: macos-12
-    needs: build_kvm_introvirt
+    # needs: build_kvm_introvirt
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -33,10 +33,10 @@ jobs:
         run: python3 -m pip install ansible
       - name: Run MacOS System Checks
         run: ./macos-system-checks.sh
-      - name: Downloads kvm introvirt deb packages
-        uses: actions/download-artifact@v3
-        with:
-          name: kvm-introvirt
-          path: ./vagrant/ivhost
+      # - name: Downloads kvm introvirt deb packages
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: kvm-introvirt
+      #     path: ./vagrant/ivhost
       - name: Build ivhost to test introvirt
         run: ./build-vbox-ivhost.sh

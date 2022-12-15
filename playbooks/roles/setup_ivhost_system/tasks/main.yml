@@ -31,8 +31,13 @@
     state: present
   become: true
 - name: Install kvm introvirt deb
+  ansible.builtin.copy:
+    src: kvm-introvirt-5.4.0-132-generic_5.4.0-132.148-0.57.0~focal1_amd64.deb
+    dest: /tmp/kvm-introvirt-5.4.0-132-generic_5.4.0-132.148-0.57.0~focal1_amd64.deb
+  become: true
+- name: Install kvm introvirt deb
   ansible.builtin.apt:
-    deb: ./kvm-introvirt*.deb
+    deb: /tmp/kvm-introvirt-5.4.0-132-generic_5.4.0-132.148-0.57.0~focal1_amd64.deb
   become: true
 - name: Install introvirt
   ansible.builtin.apt:
