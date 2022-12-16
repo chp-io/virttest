@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 # https://ss64.com/osx/sysctl.html 
 echo "CPU Count:"
