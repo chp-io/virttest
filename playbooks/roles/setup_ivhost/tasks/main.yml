@@ -13,6 +13,44 @@
 - name: Print HWE Support Status
   debug:
     var: result
+- name: Get hashicorp gpg key
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /usr/share/keyrings/hashicorp-archive-keyring.gpg.txt
+  become: true
+- name: dearmor gpg
+  shell:
+    gpg --dearmor < /usr/share/keyrings/hashicorp-archive-keyring.gpg.txt > /usr/share/keyrings/hashicorp-archive-keyring.gpg
+  become: true
+- name: Install hashicorp gpg key
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+    filename: hashicorp.list
+  become: true
+- name: Install vagrant / libvirtd
+  ansible.builtin.apt:
+    name: 
+      - vagrant
+      - vagrant-libvirt
+      - build-essential
+      - ruby-libvirt
+      - qemu
+      - libvirt-daemon-system
+      - ebtables
+      - libguestfs-tools
+      - libxslt-dev 
+      - libxml2-dev
+      - libvirt-dev
+      - zlib1g-dev
+      - ruby-dev
+    state: present
+    update_cache: yes
+  become: true
+- name: Install Vagrant libvirt plugin
+  shell:
+    vagrant plugin install vagrant-libvirt
+  become: true
 - name: Install introvirt
   ansible.builtin.apt:
     name: 
@@ -30,3 +68,8 @@
 - name: Print System Kernel
   debug:
     var: result
+- name: Start guest host
+  shell:
+    cd /vagrant && \
+    ./run-ubuntu2004.sh
+  become: true
