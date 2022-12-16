@@ -13,6 +13,14 @@
 - name: Print HWE Support Status
   debug:
     var: result
+- name: Run QEMU
+  shell: |
+    wget https://github.com/chp-io/efi-shell/releases/download/edk2-stable202202/Shell.efi
+    mkdir -p storage/EFI/BOOT
+    echo "echo Hello world!" > storage/startup.nsh
+    echo "reset -s" >> storage/startup.nsh
+    mv Shell.efi storage/EFI/BOOT/BOOTX64.EFI
+    qemu-system-x86_64 -enable-kvm -machine q35 -cpu host -m 8G -bios /usr/share/OVMF/OVMF_CODE.fd -name guest=ivguest -nographic -drive format=raw,file=fat:rw:storage
 - name: Install introvirt
   ansible.builtin.apt:
     name: 
