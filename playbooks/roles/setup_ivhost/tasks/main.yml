@@ -71,5 +71,5 @@
 - name: Start guest host
   shell:
     cd /vagrant && \
-    ./run-ubuntu2004.sh
+    ./run-winserver2019.sh
   become: true
