@@ -73,3 +73,24 @@
     cd /vagrant && \
     ./run-winserver2019.sh
   become: true
+- name: Display QEMU instances
+  shell:
+    pgrep -a qemu
+  register: result
+  become: true
+- name: Run ivguestinfo
+  shell:
+    ivguestinfo --domain server2019_winser2019 --drivers
+  register: result
+  become: true
+- name: Print ivguestinfo output
+  debug:
+    var: result
+- name: Run ivsyscallmon
+  shell:
+    ivsyscallmon --domain server2019_winser2019
+  register: result
+  become: true
+- name: Print ivsyscallmon output
+  debug:
+    var: result
