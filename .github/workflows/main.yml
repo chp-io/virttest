@@ -35,3 +35,4 @@ jobs:
         run: ./macos-system-checks.sh
       - name: Build ivhost to test introvirt
         run: ./build-vbox-ivhost.sh
+
